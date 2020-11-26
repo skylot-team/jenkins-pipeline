@@ -37,7 +37,7 @@ pipeline {
                         browser: [$class: 'GithubWeb', repoUrl: '${GIT_REPO}'],
                         userRemoteConfigs: [[credentialsId: 'jenkins-skylot', url: "${GIT_REPO}"]]])
                 }
-                publishChecks name: 'example', title: 'Pipeline Check', summary: 'check through pipeline', text: 'you can publish checks in pipeline script', detailsURL: 'https://github.com/jenkinsci/checks-api-plugin#pipeline-usa'
+                publishChecks name: 'checkout', title: 'Pipeline Check', summary: 'check through pipeline', text: 'you can publish checks in pipeline script', detailsURL: 'https://github.com/jenkinsci/checks-api-plugin#pipeline-usa'
             }
         }
     }
