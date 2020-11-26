@@ -36,7 +36,7 @@ pipeline {
                     doGenerateSubmoduleConfigurations: false, 
                     extensions: [[$class: 'CleanCheckout']], 
                     submoduleCfg: [], 
-                    userRemoteConfigs: [[credentialsId: 'github-app-test', url: "${GIT_REPO}"]]])
+                    userRemoteConfigs: [[credentialsId: 'jenkins-skylot', url: "${GIT_REPO}"]]])
                 }
             }
         }
