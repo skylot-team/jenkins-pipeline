@@ -9,6 +9,7 @@ pipeline {
     stages {
         stage('Build Environment') {
             steps {
+                publishChecks name: 'example', title: 'Pipeline Check', summary: 'check through pipeline', text: 'you can publish checks in pipeline script', detailsURL: 'https://github.com/jenkinsci/checks-api-plugin#pipeline-usa'
                 script {
                     try {
                         echo "GIT_REPO :: $GIT_REPO"
@@ -35,7 +36,7 @@ pipeline {
                     doGenerateSubmoduleConfigurations: false, 
                     extensions: [[$class: 'CleanCheckout']], 
                     submoduleCfg: [], 
-                    userRemoteConfigs: [[credentialsId: '886ae7b4-4f97-4e4a-bdbe-c6c7089711a5', url: "${GIT_REPO}"]]])
+                    userRemoteConfigs: [[credentialsId: 'github-app-test', url: "${GIT_REPO}"]]])
                 }
             }
         }
