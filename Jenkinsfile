@@ -9,7 +9,6 @@ pipeline {
     stages {
         stage('Build Environment') {
             steps {
-                publishChecks name: 'example', title: 'Pipeline Check', summary: 'check through pipeline', text: 'you can publish checks in pipeline script', detailsURL: 'https://github.com/jenkinsci/checks-api-plugin#pipeline-usa'
                 script {
                     try {
                         echo "GIT_REPO :: $GIT_REPO"
@@ -29,14 +28,14 @@ pipeline {
         
         stage('Checkout') {
             steps {
-                publishChecks name: 'example', title: 'Pipeline Check', summary: 'check through pipeline', text: 'you can publish checks in pipeline script', detailsURL: 'https://github.com/jenkinsci/checks-api-plugin#pipeline-usa'
                 dir('build') {
                     checkout([$class: 'GitSCM', 
                     branches: [[name: "master"]], 
                     doGenerateSubmoduleConfigurations: false, 
                     extensions: [[$class: 'CleanCheckout']], 
                     submoduleCfg: [], 
-                    userRemoteConfigs: [[credentialsId: 'jenkins-skylot', url: "${GIT_REPO}"]]])
+                    userRemoteConfigs: [[credentialsId: 'github-app-test', url: "${GIT_REPO}"]]])
+                    publishChecks name: 'example', title: 'Pipeline Check', summary: 'check through pipeline', text: 'you can publish checks in pipeline script', detailsURL: 'https://github.com/jenkinsci/checks-api-plugin#pipeline-usa'
                 }
             }
         }
