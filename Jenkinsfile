@@ -30,13 +30,14 @@ pipeline {
             steps {
                 dir('build') {
                     checkout([$class: 'GitSCM', 
-                    branches: [[name: "master"]], 
-                    doGenerateSubmoduleConfigurations: false, 
-                    extensions: [[$class: 'CleanCheckout']], 
-                    submoduleCfg: [], 
-                    userRemoteConfigs: [[credentialsId: 'github-app-test', url: "${GIT_REPO}"]]])
-                    publishChecks name: 'example', title: 'Pipeline Check', summary: 'check through pipeline', text: 'you can publish checks in pipeline script', detailsURL: 'https://github.com/jenkinsci/checks-api-plugin#pipeline-usa'
+                        branches: [[name: "master"]], 
+                        doGenerateSubmoduleConfigurations: false, 
+                        extensions: [[$class: 'CleanCheckout']], 
+                        submoduleCfg: [],
+                        browser: [$class: 'GithubWeb', repoUrl: '${GIT_REPO}'],
+                        userRemoteConfigs: [[credentialsId: 'github-app-test', url: "${GIT_REPO}"]]])
                 }
+                publishChecks name: 'example', title: 'Pipeline Check', summary: 'check through pipeline', text: 'you can publish checks in pipeline script', detailsURL: 'https://github.com/jenkinsci/checks-api-plugin#pipeline-usa'
             }
         }
     }
